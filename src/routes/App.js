@@ -10,27 +10,34 @@ import Payment from "../containers/Payment.js";
 import Success from "../containers/Success.js";
 import NotFound from "../containers/NotFound.js";
 
+import AppContext from "../context/AppContext.js";
+import useInitialState from "../hooks/useInitialState.js";
+
 /**
  * encapsulamos toda la navegacion de la app en el BrowserRouter
  * Switch permite acceder al recurso que coincida con exactitud la ruta elegida
  * manejamos las rutas que tendrá la app
  */
 function App() {
+  //useInitialState nos retorna el estado y dos funciones que vamos a utilizar en el contexto de la app cuando lo necesitemos
+  const initialState = useInitialState();
   return (
-    <BrowserRouter>
-      <Layout>
-        {/**aqui Switch pasa cada una de las vistas como hijos al componente Layout */}
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/checkout" component={Checkout} />
-          <Route exact path="/checkout/information" component={Information} />
-          <Route exact path="/checkout/payment" component={Payment} />
-          <Route exact path="/checkout/success" component={Success} />
+    <AppContext.Provider value={initialState}>
+      <BrowserRouter>
+        <Layout>
+          {/**aqui Switch pasa cada una de las vistas como hijos al componente Layout */}
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/checkout" component={Checkout} />
+            <Route exact path="/checkout/information" component={Information} />
+            <Route exact path="/checkout/payment" component={Payment} />
+            <Route exact path="/checkout/success" component={Success} />
 
-          <Route component={NotFound} />
-        </Switch>
-      </Layout>
-    </BrowserRouter>
+            <Route component={NotFound} />
+          </Switch>
+        </Layout>
+      </BrowserRouter>
+    </AppContext.Provider>
   );
 }
 
