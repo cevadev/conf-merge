@@ -5,7 +5,7 @@ import Product from "./Product.js";
 
 import "../styles/components/Products.css";
 
-function Products() {
+const Products = () => {
   const { state, addToCart } = useContext(AppContext);
 
   //obtenemos los productos del estado
@@ -13,7 +13,8 @@ function Products() {
 
   //funcion para adicionar un producto al carrito. Esta funcion se la pasamos al componente Product para que pueda
   //interactuar con la logica
-  const handleAddToCart = (product) => {
+  //funcion handleAddTocart que llama a otra funcion anonima y se pasa como parametro a Produc
+  const handleAddToCart = (product) => () => {
     addToCart(product);
   };
 
@@ -30,6 +31,6 @@ function Products() {
       </div>
     </div>
   );
-}
+};
 
 export default Products;

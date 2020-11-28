@@ -14,7 +14,7 @@ function useInitialState() {
    * addToCart hace uso de la funcion setState que es la funcion que actualiza el estado
    * @param {*} payload -> dato del producto a incluir a carrito
    */
-  function addToCart(payload) {
+  const addToCart = (payload) => {
     //logica simular utilizda con redux
     setState({
       //recuperamos el estado
@@ -22,13 +22,15 @@ function useInitialState() {
       //traemos el cart que esta en el estado y le agregamos elproducto que estamos comprando
       cart: [...state.cart, payload],
     });
-  }
+  };
 
-  function removeFromCart(payload) {
+  function removeFromCart(payload, indexToRemove) {
     setState({
       ...state,
       //removemos el item que estamos pasando del cart con filter, obtenemos un cart con los items que no tengan el payload o product
-      cart: state.cart.filter((item) => item.id !== payload.id),
+      cart: state.cart.filter(
+        (item, indexCurrent) => indexCurrent !== indexToRemove
+      ),
     });
   }
 
