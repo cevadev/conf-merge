@@ -34,10 +34,19 @@ function useInitialState() {
     });
   }
 
+  function addToBuyer(payload) {
+    setState({
+      //recuperamos el state que tengamos en ese momento
+      ...state,
+      buyer: [...state.buyer, payload],
+    });
+  }
+
   //retornamos las funciones
   return {
     addToCart,
     removeFromCart,
+    addToBuyer,
     state,
   };
 }
