@@ -42,11 +42,19 @@ function useInitialState() {
     });
   }
 
+  function addNewOrder(payload) {
+    setState({
+      ...state,
+      orders: [...state.orders, payload],
+    });
+  }
+
   //retornamos las funciones
   return {
     addToCart,
     removeFromCart,
     addToBuyer,
+    addNewOrder,
     state,
   };
 }
